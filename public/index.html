@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantPulse</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/jpg" href="./images/Life.jpg">
+    <link rel="stylesheet" href="/node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <h1 class="leaf">PLANT<br><span class="life">PULSE</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./diagnosis.html" class="nav-link">Upload Image</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#feedback">Feedback</a>
+                        </li>
+                        <div class="user-icon">
+                            <i class="bi bi-person-circle"></i>
+                            <div class="user-menu">
+                                <a href="./singup.html">Sign Up</a>
+                                <a href="./login.html">Login</a>
+                                <a href="./history.html">History</a>
+                            </div>
+                            <button class="btn toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            </button>
+                           
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="content">
+            <div class="info">
+                <h2>Like Nature <br><span>Be Creative!</span></h2>
+                <p>Welcome to PlantPulse, your trusted companion for detecting plant diseases using cutting-edge AI  With just a few clicks, you can upload a plant image and receive a comprehensive diagnosis of  potential diseases.Our platform helps farmers and gardeners keep their crops and plants healthy by providing reliable, fast, and accurate results.</p>
+                <a href="./diagnosis.html" class="info-btn">Upload & Diagnose</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="content">
+            <div class="info">
+                <h2>About PlantPulse</h2>
+                <p>At PlantPulse, we aim to revolutionize plant healthcare through AI-powered diagnostics. Our mission is to help farmers, gardeners, and plant enthusiasts easily detect plant diseases and receive treatment recommendations.</p>
+                <p>Plant diseases can significantly affect crop yield and plant health, but early detection and accurate identification can help prevent major losses. By utilizing our AI technology, users can diagnose diseases in plants quickly and accurately, reducing the time and effort required to manually inspect each plant.</p>
+                <h3>How It Works:</h3>
+                <div>
+                    Upload a clear image of the affected <br>
+                    Our AI model analyzes the image for signs of diseases. <br>
+                    Receive a diagnosis report with suggested treatments. <br><br>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ Section -->
+    <section id="faq" class="section">
+            <div class="content">
+                <div class="info">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading1">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    How does the AI detect plant diseases?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Our AI model has been trained on thousands of plant images, allowing it to recognize patterns and symptoms associated with specific plant diseases. It analyzes the uploaded image and compares it to known disease patterns to provide an accurate diagnosis.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeading2">
+                                <h2 class="accordion-header" id="faqHeading2">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        How accurate is the detection?
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The AI achieves over 90% accuracy on common plant diseases. However, accuracy may vary depending on the quality of the uploaded image and the clarity of the symptoms.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeading3">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        What should I do if the AI doesn't detect a disease?
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        If the AI doesn’t detect a disease, make sure that the image is clear and shows the affected part of the plant. If the issue persists, consult a plant specialist or contact our support team for further guidance.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+        
+    <!-- Feedback Section -->
+     <section id="feedback" class="section">
+        <div class="content">
+            <div class="info">
+                <h2>Feedback</h2>
+                <p>We value your feedback! Let us know how we can improve the platform or share any ideas for new features you'd like to see.</p>
+                <form>
+                    <textarea class="form-control" rows="4" placeholder="Your feedback"></textarea>
+                    <button type="submit" class="info-btn">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+        
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 PlantPulse</p>
+    </footer> 
+</body>
+</html>

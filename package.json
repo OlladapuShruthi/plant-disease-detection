@@ -1,0 +1,27 @@
+{
+  "name": "plantpulse",
+  "version": "1.0.0",
+  "description": "A plant disease diagnosis system using AI and plant data.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.18.1",
+    "express-fileupload": "^1.2.1",
+    "fs": "0.0.1-security",
+    "node-fetch": "^2.6.7",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "type": "module"
+}

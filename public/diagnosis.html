@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Disease Diagnosis</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">Plant Disease Diagnosis</h1>
+    <p class="text-center">Upload an image of a plant or leaf for diagnosis.</p>
+    <form id="diagnosisForm" enctype="multipart/form-data">
+      <div class="mb-3">
+        <input type="file" id="imageInput" name="image" accept="image/*" required class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Upload & Diagnose</button>
+    </form>
+    <div id="result" class="mt-4"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('diagnosisForm');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      resultDiv.innerHTML = '<p>Processing...</p>';
+
+      const formData = new FormData(form);
+      try {
+        const response = await fetch('/diagnose', { method: 'POST', body: formData });
+        if (response.ok) {
+          const data = await response.json();
+          const { label, score, diseaseDetails } = data;
+          resultDiv.innerHTML = `
+            <h3>Diagnosis Result</h3>
+            <p><strong>Disease:</strong> ${label}</p>
+            <p><strong>Confidence:</strong> ${(score * 100).toFixed(2)}%</p>
+            <p><strong>Description:</strong> ${diseaseDetails.description || 'N/A'}</p>
+          `;
+        } else {
+          const errorText = await response.text();
+          resultDiv.innerHTML = `<p class="text-danger">${errorText}</p>`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>

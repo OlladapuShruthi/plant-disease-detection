@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnosis - PlantPulse</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="icon" type="image/jpg" href="./images/Life.jpg">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#home">
+                    <h1 class="leaf">PLANT<br><span class="life">PULSE</span></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="./diagnosis.html" class="nav-link">Upload Image</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#feedback">Feedback</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Diagnosis Section -->
+    <section id="diagnosis" class="section">
+        <div class="content">
+            <div class="info">
+                <h2>Upload Image for Diagnosis</h2>
+                <p>Upload an image of the plant to diagnose its disease using AI.</p>
+
+                <!-- Image Upload Form -->
+                <form id="diagnosisForm" enctype="multipart/form-data">
+                    <input type="file" id="imageInput" name="image" accept="image/*" required />
+                    <button type="submit" class="btn btn-primary mt-3">Upload & Diagnose</button>
+                </form>
+
+                <!-- Result Section -->
+                <div id="result" class="mt-4"></div> <!-- Result will be displayed here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 PlantPulse</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('diagnosisForm');
+        const imageInput = document.getElementById('imageInput');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            const formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+
+            try {
+                const response = await fetch('/diagnose', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const { label, score, diseaseDetails } = data;
+                    const { description, possibleSteps, imageUrl, supplements } = diseaseDetails;
+
+                    // Display the prediction and disease details
+                    resultDiv.innerHTML = `
+                        <h3>Diagnosis Result</h3>
+                        <p><strong>Disease:</strong> ${label}</p>
+                        <p><strong>Confidence:</strong> ${(score * 100).toFixed(2)}%</p>
+                        <p><strong>Description:</strong> ${description || 'No description available.'}</p>
+                        <p><strong>Possible Steps:</strong> ${possibleSteps || 'No steps provided.'}</p>
+                        <img src="${imageUrl || '#'}" alt="${label}" style="max-width: 100%; margin-top: 10px;" onerror="this.style.display='none';">
+                        
+                        <h4>Supplements</h4>
+                        <ul>
+                            ${
+                              (supplements && supplements.length > 0)
+                                ? supplements.map(supp => `
+                                    <li>
+                                        <strong>${supp.name}</strong><br>
+                                        <img src="${supp.image}" alt="${supp.name}" style="max-width: 100px;" onerror="this.style.display='none';"><br>
+                                        <a href="${supp.buyLink}" target="_blank">Buy Now</a>
+                                    </li>
+                                  `).join('')
+                                : '<p>No supplements available for this disease.</p>'
+                            }
+                        </ul>
+                    `;
+                } else {
+                    resultDiv.innerHTML = '<p class="text-danger">Error: Could not process the image.</p>';
+                }
+            } catch (error) {
+                console.error('Error during diagnosis:', error);
+                resultDiv.innerHTML = '<p class="text-danger">Error: Something went wrong with the diagnosis.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
